@@ -131,11 +131,8 @@ def generate_report(sysdigRegion, auth, headers, hasFix, isExploitable, dateFrom
             baseImagesData = []
 
             for base_image in resultData["baseImages"]:
-                # baseImage_type = resultData['baseImages'][base_image]
-                # print(baseImage_type)
                 pullstrings = resultData['baseImages'][base_image].get("pullStrings", [])
                 unique_pullstrings.update(pullstrings)
-                # print(pullstrings)
             for pullstring in unique_pullstrings:
                 baseImageReturn = {}
                 for baseImageReportType in ["registry","pipeline","runtime"]:
@@ -190,9 +187,6 @@ def generate_report(sysdigRegion, auth, headers, hasFix, isExploitable, dateFrom
                     itemReturn['packageType'] = resultData['packages'][packageId]['type']
                     itemReturn['packageVersion'] = resultData['packages'][packageId]['version']
                     if baseImage:
-                        # itemReturn['baseImageId'] = baseImagesData
-                        # print(baseImagesData)
-                        # print(len(baseImagesData))
                         if baseImagesData:
                             itemReturn['baseImageId'] = baseImagesData[0]['imageId']
                             itemReturn['baseImagePullString'] = baseImagesData[0]['imagePullString']
